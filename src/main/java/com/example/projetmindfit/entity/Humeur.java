@@ -22,13 +22,7 @@ public class Humeur {
     private String etatHumeur ;
     private String descriptionHummeur ;
 
-    @ManyToMany
-    @JoinTable(
-            name="humeur_exercice",
-            joinColumns = @JoinColumn(name = "humeur_id"),
-            inverseJoinColumns = @JoinColumn(name = "exercice_id")
-    )
-    Set<Exercice> exercices ;
+
 
 
 
