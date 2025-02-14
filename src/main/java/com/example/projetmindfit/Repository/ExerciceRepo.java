@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ExerciceRepo extends JpaRepository<Exercice, Long> {
-    List<Exercice> findByHumeur(Humeur humeur);
+    List<Exercice> findByHumeurId(Long humeurId);
 
 }

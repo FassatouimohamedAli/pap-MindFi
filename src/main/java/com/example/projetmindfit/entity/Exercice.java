@@ -21,6 +21,5 @@ public class Exercice {
     private String description ;
     private int duree;
     private String frequence_recommandee;
-    @ManyToOne
-    private Humeur humeur;
+
 }

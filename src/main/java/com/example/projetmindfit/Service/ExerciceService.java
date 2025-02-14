@@ -18,20 +18,12 @@ public class ExerciceService {
     @Autowired
     private ExerciceRepo exerciceRepository;
 
-    @Autowired
-    private HumeurRepo humeurRepository;
+    public List<Exercice> getExercicesByHumeur(Long humeurId) {
+        return exerciceRepository.findByHumeurId(humeurId);
+    }
 
-    public List<ExerciceDTO> getExercisesByMood(String moodName) {
-        Humeur humeur = humeurRepository.findAll().stream()
-                .filter(h -> h.getEtatHumeur().equalsIgnoreCase(moodName))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Mood not found"));
-
-        List<Exercice> exercices = exerciceRepository.findByHumeur(humeur);
-
-        return exercices.stream()
-                .map(ExerciceMapper::toDTO)
-                .collect(Collectors.toList());
+    public Exercice saveExercice(Exercice exercice) {
+        return exerciceRepository.save(exercice);
     }
 
 }
