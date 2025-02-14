@@ -20,6 +20,11 @@ public class Exercice {
     private String nom ;
     private String description ;
     private int duree;
+
     private String frequence_recommandee;
+    // exercie humeur iwali ba3ed iverifi
+    // l humeur de meditant par humeur de Exercice w y5arjlou les exercice hedheka
+    //kenghata badel
+    private String  exerciceHumeur;
 
 }

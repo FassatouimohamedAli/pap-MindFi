@@ -22,8 +22,9 @@ public class Humeur {
     private Long id;
     private String etatHumeur ;
     private String descriptionHummeur ;
-    @OneToMany(mappedBy = "humeur", cascade = CascadeType.ALL)
-    private List<Exercice> exercices;
+
+
+
 
 
 
