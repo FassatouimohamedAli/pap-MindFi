@@ -58,4 +58,9 @@ public class ExerciceController {
     public List<Exercice> obtenirExercicesParHumeur(@PathVariable String humeur) {
         return exerciceService.obtenirExercicesParHumeur(humeur);
     }
+
+    @GetMapping("planifier/{humeur}")
+    public List<Exercice> ajouterExercice(@PathVariable String humeur) {
+        return exerciceService.planifierExercice(humeur);
+    }
 }

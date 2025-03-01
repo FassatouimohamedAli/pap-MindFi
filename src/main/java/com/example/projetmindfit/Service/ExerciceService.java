@@ -8,6 +8,8 @@ import com.example.projetmindfit.entity.Exercice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,5 +55,19 @@ public class ExerciceService {
     // Obtenir les exercices par humeur
     public List<Exercice> obtenirExercicesParHumeur(String humeur) {
         return exerciceRepository.findByExerciceHumeur(humeur);
+    }
+
+
+    public List<Exercice>  planifierExercice(String humeur) {
+
+        List<Exercice> planifExercice = new ArrayList<>();
+        List<Exercice> exerciceHumeur = exerciceRepository.findByExerciceHumeur(humeur) ;
+        Collections.shuffle(exerciceHumeur);
+        int  n = 2 ;
+        //sublist view donc lezm nzidou addall ( l items eli 5tarnehom random mel exercices
+        planifExercice.addAll(exerciceHumeur.subList(0, Math.min(n, exerciceHumeur.size())));
+
+return planifExercice;
+
     }
 }
