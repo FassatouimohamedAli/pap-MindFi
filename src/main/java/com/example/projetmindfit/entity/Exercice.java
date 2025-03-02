@@ -26,5 +26,6 @@ private String type ;
     // l humeur de meditant par humeur de Exercice w y5arjlou les exercice hedheka
     //kenghata badel
     private String  exerciceHumeur;
+    private String url ;
 
 }
