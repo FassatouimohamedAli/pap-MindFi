@@ -63,4 +63,6 @@ public class ExerciceController {
     public List<Exercice> ajouterExercice(@PathVariable String humeur) {
         return exerciceService.planifierExercice(humeur);
     }
+
+
 }
