@@ -63,7 +63,7 @@ public class ExerciceService {
         List<Exercice> planifExercice = new ArrayList<>();
         List<Exercice> exerciceHumeur = exerciceRepository.findByExerciceHumeur(humeur) ;
         Collections.shuffle(exerciceHumeur);
-        int  n = 2 ;
+        int  n = 2 ; // size te3 les exercices
         //sublist view donc lezm nzidou addall ( l items eli 5tarnehom random mel exercices
         planifExercice.addAll(exerciceHumeur.subList(0, Math.min(n, exerciceHumeur.size())));
 
