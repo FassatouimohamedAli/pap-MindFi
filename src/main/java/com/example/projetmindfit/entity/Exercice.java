@@ -26,6 +26,7 @@ private String type ;
     // l humeur de meditant par humeur de Exercice w y5arjlou les exercice hedheka
     //kenghata badel
     private String  exerciceHumeur;
+    @Column(name = "url", length = 1700)
     private String url ;
 
 }

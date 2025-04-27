@@ -48,6 +48,7 @@ public class ExerciceService {
             exercice.setDuree(exerciceDetails.getDuree());
             exercice.setFrequence_recommandee(exerciceDetails.getFrequence_recommandee());
             exercice.setExerciceHumeur(exerciceDetails.getExerciceHumeur());
+            exercice.setUrl(exerciceDetails.getUrl());
             return exerciceRepository.save(exercice);
         }).orElseThrow(() -> new RuntimeException("Exercice non trouvé !"));
     }
