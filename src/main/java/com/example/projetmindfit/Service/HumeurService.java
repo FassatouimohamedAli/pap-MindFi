@@ -3,6 +3,7 @@ package com.example.projetmindfit.Service;
 import com.example.projetmindfit.Repository.HumeurRepo;
 import com.example.projetmindfit.Repository.MeditantRepo;
 import com.example.projetmindfit.entity.Humeur;
+import com.example.projetmindfit.entity.Meditant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,15 @@ public class HumeurService {
         humeur.setMeditant(meditantRepo.findByEmail(email).get());
 
         return humeurRepo.save(humeur);
+    }
+
+    public List<Humeur> getAllHumeursByMeditant(String email) {
+        // Chercher le méditant par email
+        Meditant meditant = meditantRepo.findByEmail(email).orElseThrow(() ->
+                new RuntimeException("Méditant avec l'email " + email + " non trouvé"));
+
+        // Récupérer toutes les humeurs du méditant
+        return humeurRepo.findByMeditant(meditant);
     }
 
 

@@ -27,6 +27,8 @@ public class HumeurController {
         return humeurService.getAllHumeurs();
     }
 
+
+
     @PostMapping("meditant/humeurs")
     public ResponseEntity<Object> createHumeur(@RequestBody Humeur humeur ,
                                                @RequestHeader("Authorization") String tokenAuth) {
@@ -43,5 +45,23 @@ public class HumeurController {
         }
     }
 
+
+    @GetMapping("/meditant/All-humeur-meditant")
+    public ResponseEntity<Object> getAllHumeursByMeditant(
+            @RequestHeader("Authorization") String tokenAuth) {
+        try {
+            // Extraire l'email à partir du token JWT
+            String email = jwtUtil.extractEmail(tokenAuth.replace("Bearer ", ""));
+            System.out.println("Email extrait du token : " + email);
+
+            // Récupérer les humeurs du méditant
+            List<Humeur> humeurs = humeurService.getAllHumeursByMeditant(email);
+            return ResponseEntity.ok(humeurs); // Retourner les humeurs
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Méditant non trouvé !");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la récupération des humeurs");
+        }
+    }
 
 }
