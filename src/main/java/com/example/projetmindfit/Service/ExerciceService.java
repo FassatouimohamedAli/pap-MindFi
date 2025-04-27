@@ -68,6 +68,7 @@ public class ExerciceService {
         planifExercice.addAll(exerciceHumeur.subList(0, Math.min(n, exerciceHumeur.size())));
 
 return planifExercice;
-
     }
+    
+
 }

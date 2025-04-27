@@ -22,7 +22,9 @@ public class Humeur {
     private Long id;
     private String etatHumeur ;
     private String descriptionHummeur ;
-
+    @ManyToOne
+    @JoinColumn(name = "meditant_id")
+    private Meditant meditant;
 
 
 

@@ -33,35 +33,37 @@ Meditant m  = mapperMeditant.toMeditant(meditantRequest);
         return mapperMeditant.toResponse(meditantRepo.findByEmail(email).get());
     }
 
-    public MeditantResponse updateMeditant(String Email , MeditantRequest meditantRequest){
-        Meditant meditantEmail  = mapperMeditant.toMeditant(meditantRequest);
-        Optional<Meditant> optionalMeditant = meditantRepo.findByEmail(Email);
+    public MeditantResponse updateMeditant(String email , MeditantRequest meditantRequest){
+        Optional<Meditant> optionalMeditant = meditantRepo.findByEmail(email);
 
         if (optionalMeditant.isEmpty()) {
             throw new RuntimeException("Méditant non trouvé avec cet email !");
         }
 
-        Meditant MeditantExist = optionalMeditant.get();
+        Meditant meditantExist = optionalMeditant.get();
 
-System.out.println(meditantRequest);
         if (meditantRequest.nom() != null) {
-            MeditantExist.setNom(meditantRequest.nom());
+            meditantExist.setNom(meditantRequest.nom());
         }
 
         if (meditantRequest.prenom() != null) {
-            MeditantExist.setPrenom(meditantRequest.prenom());
+            meditantExist.setPrenom(meditantRequest.prenom());
         }
 
-
         if(meditantRequest.password() != null){
-            MeditantExist.setPassword(meditantRequest.password());
-            MeditantExist.setPassword(passwordEncoder.encode(meditantRequest.password()));
+            meditantExist.setPassword(passwordEncoder.encode(meditantRequest.password()));
         }
 
         if(meditantRequest.etat() != null){
-            MeditantExist.setEtat(meditantRequest.etat());
+            meditantExist.setEtat(meditantRequest.etat());
         }
-        System.out.println(meditantRequest);
-return mapperMeditant.toResponse(meditantRepo.save(MeditantExist));
+
+        return mapperMeditant.toResponse(meditantRepo.save(meditantExist));
+    }
+
+
+
+    public  void deleteProfil(MeditantRequest meditantRequest){
+        meditantRepo.delete(mapperMeditant.toMeditant(meditantRequest));
     }
 }

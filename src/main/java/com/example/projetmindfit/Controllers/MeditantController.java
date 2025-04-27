@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-public class MeditantControlelr {
+public class MeditantController {
     @Autowired
     private JwtUtil jwtUtil;
     @Autowired
@@ -53,7 +53,7 @@ public class MeditantControlelr {
         try {
             // Extraire l'email à partir du token JWT
             String email = jwtUtil.extractEmail(tokenAuth.replace("Bearer ", ""));
-
+            System.out.println("Email extrait du token : " + email);
             MeditantResponse updatedMeditant = meditantService.updateMeditant(email, meditantRequest);
             return ResponseEntity.ok(updatedMeditant);
         } catch (RuntimeException e) {
@@ -62,6 +62,20 @@ public class MeditantControlelr {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500 pour d'autres erreurs
         }
     }
+
+
+    @PostMapping("/meditant/removeMeditant")
+    public void removeMeditant(@RequestBody MeditantRequest meditantRequest) {
+        try {
+            meditantService.deleteProfil(meditantRequest);
+           System.out.println("delete avec success");
+        } catch (Exception e) {
+
+            System.out.println("Error" + e.getMessage());
+
+        }
+    }
+
 }
 
 
